@@ -51,11 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
       itemEl.style.top = `${random(0, clientHeight - 34)}px`;
     }
 
+    const translateX = (clientWidth + itemEl.offsetWidth) + random(0, itemEl.offsetWidth);
+    itemEl.style.transform = `translateX(${translateX}px)`;
 
-    itemEl.style.transform = `translateX(${clientWidth}px)`;
-    itemEl.style.transition = `transform ${(parseInt(clientWidth / itemEl.offsetWidth)) * Number(window.SMBarrage.step) + random(0, 5)}s ${window.SMBarrage.timing}`;
+    const transition = `transform ${parseInt((translateX / itemEl.offsetWidth)) * Number(window.SMBarrage.step) + random(0, 5)}s ${window.SMBarrage.timing}`;
+    itemEl.style.transition = transition;
 
-    // 30秒后出发
+    // 30毫秒后出发
     const timer = setTimeout(() => {
       itemEl.style.transform = 'translateX(-100%)'
       clearTimeout(timer);
@@ -66,10 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.SMBarrage.continued === 'N') return;
     itemEl.addEventListener('transitionend', () => {
       itemEl.style.transition = '';
-      itemEl.style.transform = `translateX(${clientWidth}px)`;
+      itemEl.style.transform = `translateX(${translateX}px)`;
       // 50秒后出发
       const _timer = setTimeout(() => {
-        itemEl.style.transition = `transform ${(parseInt(clientWidth / itemEl.offsetWidth)) * Number(window.SMBarrage.step) + random(0, 5)}s ${window.SMBarrage.timing}`;
+        itemEl.style.transition = transition;
         itemEl.style.transform = 'translateX(-100%)';
         clearTimeout(_timer);
       }, 50);
