@@ -48,6 +48,34 @@ class SMBarrage_Plugin implements Typecho_Plugin_Interface
     );
     $form->addInput($SMSwitch->multiMode());
 
+    $SMMax = new Typecho_Widget_Helper_Form_Element_Select(
+      'SMMax',
+      array(
+        '10' => '最大显示10条弹幕',
+        '15' => '最大显示20条弹幕',
+        '20' => '最大显示30条弹幕',
+        '25' => '最大显示40条弹幕',
+        '30' => '最大显示50条弹幕',
+      ),
+      '10',
+      '请选择最大显示多少条弹幕',
+      '介绍：用于设置每个页面的最大弹幕显示数量'
+    );
+    $form->addInput($SMMax->multiMode());
+
+    $SMPosition = new Typecho_Widget_Helper_Form_Element_Select(
+      'SMPosition',
+      array(
+        'BOTH' => '显示在屏幕任意位置',
+        'TOP' => '显示在屏幕上半屏',
+        'BOTTOM' => '显示在屏幕下半屏',
+      ),
+      '10',
+      '请选择弹幕显示位置',
+      '介绍：用于控制弹幕的显示位置'
+    );
+    $form->addInput($SMPosition->multiMode());
+
     $SMStep = new Typecho_Widget_Helper_Form_Element_Select(
       'SMStep',
       array(
@@ -150,6 +178,12 @@ class SMBarrage_Plugin implements Typecho_Plugin_Interface
     $timing = Typecho_Widget::widget('Widget_Options')->Plugin('SMBarrage')->SMTiming;
     if (!$timing) $timing = 'linear';
 
+    $max = Typecho_Widget::widget('Widget_Options')->Plugin('SMBarrage')->SMMax;
+    if (!$max) $max = '10';
+
+    $position = Typecho_Widget::widget('Widget_Options')->Plugin('SMBarrage')->SMPosition;
+    if (!$position) $position = 'BOTH';
+
     $gravatarsUrl = Typecho_Widget::widget('Widget_Options')->Plugin('SMBarrage')->SMCustomAvatarSource;
     if (!$gravatarsUrl) $gravatarsUrl = 'https://gravatar.ihuan.me/avatar/';
 
@@ -173,6 +207,8 @@ class SMBarrage_Plugin implements Typecho_Plugin_Interface
           step: $step,
           continued: '$continued',
           timing: '$timing',
+          max: $max,
+          position: '$position',
         };
       </script>
       <script src="$pluginUrl/assets/js/SMBarrage.js"></script>

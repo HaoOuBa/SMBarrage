@@ -4,14 +4,15 @@
   left: 0;
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.55);
   user-select: none;
   height: 34px;
   border-radius: 17px;
   padding: 0 10px 0 7px;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 5201314;
   box-sizing: border-box;
+  pointer-events: none;
   &_avatar {
     width: 24px;
     height: 24px;
