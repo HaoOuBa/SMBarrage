@@ -2,7 +2,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 /**
- * A Comment Barrage For Typecho
+ * <a href="https://github.com/HaoOuBa/SMBarrage" target="_blank" rel="noopener noreferrer">A Comment Barrage For Typecho</a>
  * 
  * @package SMBarrage（什么弹幕）
  * @author Joe
